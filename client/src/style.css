@@ -1,0 +1,58 @@
+/* NavBar Styling */
+.ui.menu:first-child {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Jumbotron/Message styling */
+.ui.message.message-container {
+    text-align: center;
+    padding: 50px;
+    box-shadow: 0;
+    margin: 0;
+}
+/* UserForm styling */
+.form-container{
+    text-align: center;
+    width: 300px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+/* UserForm alert message */
+.ui.alertMssg {
+    margin-top: 0;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.ui.inverted.menu label::before {
+    display: none;
+}
+
+.ui.inverted.menu .active.item{    
+    background: #2185d0;
+    color: #fff!important;
+}
+
+@media only screen and (max-width: 767px) {
+    .ui.table:not(.unstackable) tr.cust {
+        -webkit-text-size-adjust: 100%;
+        font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+        line-height: 1.4285em;
+        text-align: left;
+        color: rgba(0,0,0,.87);
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: 1em;
+        box-sizing: inherit;
+        width: auto!important;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        box-shadow: 0 -1px 0 0 rgba(0,0,0,.1) inset!important;
+        display: flex !important;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+}
