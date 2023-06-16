@@ -31,9 +31,9 @@ function RewardWidget(props) {
         
         (async()=>{
             console.log('campaign_participant', props)
-            await computeCollaboratorsData()
-            await computeCampaignParticipantData()
-            await computeEliteData()
+            // await computeCollaboratorsData()
+            // await computeCampaignParticipantData()
+            // await computeEliteData()
         })()
     }, [])
     

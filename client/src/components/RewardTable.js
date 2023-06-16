@@ -25,10 +25,10 @@ const RewardTable = (props) => {
                       <Table.Cell collapsing>
                       <Checkbox slider />
                       </Table.Cell>
-                      <Table.Cell><Link to={`/rewards/${reward._id}`}>{`${reward.name}`}</Link></Table.Cell>
-                      <Table.Cell>{reward.campaign.name}</Table.Cell>
-                      <Table.Cell>{new Date(reward.created_at).toDateString()}</Table.Cell>
-                      <Table.Cell>{reward.created_by.email}</Table.Cell>
+                      <Table.Cell><Link to={`/rewards/${reward?._id}`}>{`${reward?.name}`}</Link></Table.Cell>
+                      <Table.Cell>{reward?.campaign?.name}</Table.Cell>
+                      <Table.Cell>{new Date(reward?.created_at).toDateString()}</Table.Cell>
+                      <Table.Cell>{reward?.created_by.email}</Table.Cell>
                   </Table.Row>
               ))}
             

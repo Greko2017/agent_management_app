@@ -31,7 +31,7 @@ const RewardForm = (props) => {
 
 
     const [formValue, setFormValue] = React.useState({
-       name: props.is_edit===true ? props.reward.name : generateName('RWD'), campaign_id: props.is_edit===true ? props.reward.campaign._id : '', reward_amount: props.is_edit===true ? props.reward.reward_amount : ''
+       name: props.is_edit===true ? props.reward.name : generateName('RWD'), campaign_id: props.is_edit===true ? props.reward.campaign?._id : '', reward_amount: props.is_edit===true ? props.reward.reward_amount : ''
     })
 
     

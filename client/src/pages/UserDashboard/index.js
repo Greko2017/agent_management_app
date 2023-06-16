@@ -121,10 +121,13 @@ export const UserDashboard = (props) => {
     const computeDashboardData = async () => { 
         let query = {}
         let tmp_dashboard_data = {}
-        if (role.name === 'elite') {   
+        if (role.name === 'elite') {
             query = {is_collaborator: true, parent_id: currentUser?._id }
+            console.log('-- computeDashboardData query', query)
             // get elite's collaborators
             let _res_col = await dispatch(getGeneralsGeneric(query, setErrorMessage, setSuccessMessage, setIsLoading));
+            
+            console.log('-- computeDashboardData _res_col.data', _res_col.data)
             tmp_dashboard_data.collaborators = _res_col.data
 
             // get elite's beneficiaries
@@ -137,6 +140,7 @@ export const UserDashboard = (props) => {
 
     return (
         <>
+        {/* <p>{JSON.stringify(dashboard_data)}</p> */}
         <GridColumn equals>
             <GridRow>
                 <Segment style={{display: 'flex', justifyContent: 'space-between'}} raised  color='teal'>
@@ -166,7 +170,7 @@ export const UserDashboard = (props) => {
                     <Segment><h4>{role.name === 'elite' ? 'Beneficiaries' : 'N/A'}</h4></Segment>
                     <Segment align='center'>                                
                         <Statistic size='small'>
-                            <Statistic.Value>77</Statistic.Value>
+                        <Statistic.Value>{dashboard_data.beneficiaries && dashboard_data.beneficiaries?.length || 0}</Statistic.Value>
                             <Statistic.Label></Statistic.Label>
                         </Statistic>
                     </Segment>
@@ -179,7 +183,7 @@ export const UserDashboard = (props) => {
                     <Segment><h4>collaborators</h4></Segment>
                     <Segment align='center'>                                
                         <Statistic size='small'>
-                            <Statistic.Value>15</Statistic.Value>
+                            <Statistic.Value>{dashboard_data.collaborators && dashboard_data.collaborators?.length || 0}</Statistic.Value>
                             <Statistic.Label></Statistic.Label>
                         </Statistic>
                     </Segment>
@@ -231,16 +235,16 @@ export const UserDashboard = (props) => {
                 <Segment.Group raised>
                     <Segment><h4>Collaborators Aquired</h4></Segment>
                     <Segment>                                
-                        <Progress value='4' total='5' progress='percent' success />
+                        <Progress value={dashboard_data.collaborators?.length || 0} total='15' progress='percent' success />
                     </Segment>
                 </Segment.Group>
             </Grid.Column>
             <Grid.Column computer={4} mobile={8} tablet={3}>
                 
                 <Segment.Group raised>
-                    <Segment><h4>Collaborators Aquired</h4></Segment>
+                    <Segment><h4>Beneficiaries Aquired</h4></Segment>
                     <Segment >                                
-                        <Progress value='15' total='31' progress='ratio' />
+                        <Progress value={dashboard_data.beneficiaries?.length || 0} total='25' progress='ratio' />
                     </Segment>
                 </Segment.Group>
             </Grid.Column>
@@ -294,11 +298,11 @@ export const UserDashboard = (props) => {
             
         </Grid>
 
-            <Message className="message-container" size="huge" secondary="true">
+            {/* <Message className="message-container" size="huge" secondary="true">
                 <Header size="huge"> User Dashboard </Header>
                 <p>This is a Protected Route</p>
                 <p>Welcome {user ? user.email : ""}</p>
-            </Message>
+            </Message> */}
         </>
     )
 }
