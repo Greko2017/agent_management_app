@@ -22,9 +22,12 @@ module.exports = {
         })
 
         // Check if user already exist
-        const beneficiary = await User.findOne({ email })
-        if (beneficiary) return res.status(400).json({ message: "Email already registered. Please Login" });
-        
+        if (email === " ") {
+
+        } else {            
+            const beneficiary = await User.findOne({ email })
+            if (beneficiary) return res.status(400).json({ message: "Email already registered. Please Login" });            
+        }
         const _beneficiary = await newBeneficiary.save()
         res.json({
             ..._beneficiary,

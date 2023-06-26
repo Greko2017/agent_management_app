@@ -81,7 +81,7 @@ function BeneficiaryInstalmentHistoryDetails() {
                             <strong style={{weight :'bold', size: '4em', paddingLeft: '1em'}}>{beneficiary_instalment_history.status}</strong>
                         </div>
                         <div>
-                            {role && role.name === 'accountant' ? (
+                            {role && (role.name === 'accountant' || role.name === 'Admin') ? (
                                 <Button
                                     loading={isLoading}
                                     disabled={isLoading || beneficiary_instalment_history?.status === 'paid'}

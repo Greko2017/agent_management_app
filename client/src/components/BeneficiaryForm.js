@@ -6,7 +6,6 @@ import { clearErrors } from '../actions/authActions';
 import { reduxForm } from "redux-form";
 import { addBeneficiary, editBeneficiary, getBeneficiariesByParentId } from '../services/BeneficiaryServices/BeneficiaryServices';
 import { getGenerals } from '../services/GeneralServices/GeneralServices';
-import { getAllAccountsOfParticipantByParticipantId } from '../services/ParticipantAccountParticipantServices/ParticipantAccountParticipantServices';
 import { getParticipantAccounts } from '../services/ParticipantAccountServices/ParticipantAccountServices';
 const genderOptions = [
   { key: 'm', text: 'Male', value: 'male' },

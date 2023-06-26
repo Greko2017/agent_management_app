@@ -8,7 +8,7 @@ function BeneficiaryInstalmentHistoryModal(props) {
   const {role, permissions} = useSelector(state => state.auth);
   return (
   <>
-  {role && role.name === 'cashier' ? (
+  {role && (role.name === 'cashier' || role.name === 'Admin') ? (
       
       <Modal
       onClose={() => props.setOpen(false)}

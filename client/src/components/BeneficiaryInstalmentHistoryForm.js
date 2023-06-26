@@ -78,7 +78,7 @@ const handleChange = (e, { name, value }) => {setFormValue({ ...formValue, [name
 const handleSubmit = async (e) => {
     e.preventDefault()
     if (!formValue.paid_instalment_line_id) {
-        setErrorMessage({message: 'Please, Fill all required fiel'})
+        setErrorMessage('Please, Fill all required fields paid_instalment_line missing please create installment lines')
         return
     }
     formValue.beneficiary = beneficiaries.filter(item=> item._id == formValue.beneficiary_id)[0];
@@ -129,9 +129,9 @@ const handleSubmit = async (e) => {
     return (
     <>
     
-    {errorMessage ? <Message className="alertMssg" basic="true" color='red'> {errorMessage} </Message> : ""}
+    {errorMessage ? <Message className="alertMssg" basic="true" color='red'> {errorMessage.toString()} </Message> : ""}
     
-    {successMessage ? <Message className="alertMssg" basic="true" color='green'> {successMessage} </Message> : ""}
+    {successMessage ? <Message className="alertMssg" basic="true" color='green'> {successMessage.toString()} </Message> : ""}
     
   <Form onSubmit={handleSubmit} id='beneficiary-instalment-history-form'>
           

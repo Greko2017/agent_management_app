@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import {  useDispatch, useSelector } from "react-redux";
 import { Button, Message,GridColumn,GridRow,  Header, HeaderContent} from "semantic-ui-react";
@@ -13,7 +12,11 @@ import axios from 'axios';
 import { saveAs } from 'file-saver';
 import {generateName} from '../../utils/tools'
 import history from "../../history"
+
+
 function BeneficiaryDetails() {
+    const token = useSelector(state => state.auth.token)
+
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +30,15 @@ function BeneficiaryDetails() {
 
     const { beneficiary_id } = useParams() 
     const dispatch = useDispatch();   
+
+    const headerConfig = {
+        headers: {
+            "Content-type": "application/json"
+        }
+    }
+    if (token) {
+        headerConfig.headers["token"] = token
+    }
 
     useEffect(() => {
         let _permission = {}
@@ -75,9 +87,9 @@ function BeneficiaryDetails() {
         let invoice_seq = generateName('INV');
         setIsLoading(true)
         axios.post('/invoice/create-pdf', {invoice_seq, installments: beneficiary_instalment_histories, beneficiary})
-        .then(() => axios.get(`/invoice/fetch-pdf/${invoice_seq}`, { responseType: 'blob' }))
+        .then(() => axios.get(`/invoice/fetch-pdf/${invoice_seq}`, {...headerConfig, responseType: 'blob' }))
         .then((res) => {
-        const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+        const pdfBlob = new Blob([res.data], { ...headerConfig, type: 'application/pdf' });
 
         saveAs(pdfBlob, `${invoice_seq}.pdf`);
         setIsLoading(false)
